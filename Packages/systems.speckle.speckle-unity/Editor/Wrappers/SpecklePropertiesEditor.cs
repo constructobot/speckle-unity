@@ -23,6 +23,7 @@ namespace Speckle.ConnectorUnity.Wrappers.Editor
         private static HashSet<string> ArrayFoldoutState = new();
         private static bool instancePropFoldoutState = true;
         private static bool dynamicPropFoldoutState = true;
+        private static bool instanceParamsFoldoutState = true;
         private static bool isEditMode;
 
         static SpecklePropertiesEditor()
@@ -130,12 +131,6 @@ namespace Speckle.ConnectorUnity.Wrappers.Editor
                             properties.Data[propName] = newValue;
                     }
 
-                    if (!properties.Data.TryGetValue(propName, out object? existingValue))
-                        continue;
-
-                    var newValue = CreateField(existingValue, propName, propLayoutOptions);
-                    if (newValue != existingValue)
-                        properties.Data[propName] = newValue;
                 }
             }
 
